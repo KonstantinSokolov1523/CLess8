@@ -45,7 +45,6 @@ Randarr2d(array2d);
 PrintArr2d(array2d);
 SumInArr(array2d, array);
 Console.WriteLine();
-Console.WriteLine(String.Join(",", array));
 mininarr = FindMininArr(array, mininarr);
 Console.WriteLine($"минимальная сумма значений в строке № {mininarr + 1}");
 }

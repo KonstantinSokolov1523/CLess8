@@ -12,7 +12,7 @@ void task54()
 int[,] array2d = new int [4,3];
 Randarr2d(array2d);
 PrintArr2d(array2d);
-console.WriteLine("Массив отсортирован: ");
+Console.WriteLine("Массив отсортирован: ");
 SortArr2d(array2d);
 PrintArr2d(array2d);
 }
@@ -36,14 +36,19 @@ PrintArr2d(array2d);
 
 
 Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка */
-
 void task56()
 {
-int[,] array2d = new int[4];
-int[] array = new int[4, 4];
+int[,] array2d = new int[4,3];
+int[] array = new int[4];
+int mininarr = 0;
 Randarr2d(array2d);
-SumInArr(array2d, array)
-
+PrintArr2d(array2d);
+SumInArr(array2d, array);
+Console.WriteLine();
+Console.WriteLine(String.Join(",", array));
+mininarr = FindMininArr(array, mininarr);
+Console.WriteLine($"минимальная сумма значений в строке № {mininarr + 1}");
+}
 
 /* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 Например, даны 2 матрицы:
@@ -85,32 +90,46 @@ void PrintArr2d(int[,] array)
 
 void SortArr2d(int[,] array)
 {
-for (int i =0; i<array.GetLength(0); i++)
-{
-for (int j = 0; j < array.GetLength(1); j++)
-{
-for(int x = 0; x < array.GetLength(1)-1; x++)
-{
-if (array[i, x] < array[i, x + 1])
-{
-int tmp = array[i, x + 1];
-array[i, x + 1] = array[i, x];
-array[i, x] = tmp;
-}
-}
-}
-}
+    for (int i =0; i<array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for(int x = 0; x < array.GetLength(1)-1; x++)
+            {
+                if (array[i, x] < array[i, x + 1])
+                {
+                    int tmp = array[i, x + 1];
+                    array[i, x + 1] = array[i, x];
+                    array[i, x] = tmp;
+                }
+            }
+        }
+    }
 }
 
-void SumInArr(int[,] array2d, int[array])
+void SumInArr(int[,] array2d, int[] array)
 {
-for (int i = 0; i < array2d.GetLength(0); i++)
+    
+    for (int i = 0; i < array2d.GetLength(0); i++)
+    {
+        int Sum = 0;
+        for (int j = 0; j < array2d.GetLength(1); j++)
+        { 
+            Sum += array2d[i,j];
+            array[i] = Sum;
+        }
+    }
+}
+int FindMininArr(int[] array, int min)
 {
-for (int j = 0; j < array2d.GetLength(1); j++)
-{ 
-int Sum = 0;
-Sum += array2d[i,j];
-array[i] = Sum;
-}
-}
+    min = 0;
+    for(int i = 0; i <= array.Length-1; i++)
+    {
+        if(array[i] < array[min])
+        {
+            min = i;
+        }
+    
+    }
+    return min;
 }

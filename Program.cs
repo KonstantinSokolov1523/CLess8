@@ -1,4 +1,24 @@
-﻿/* Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+﻿Console.Write("Введите номер задачи(54,56,58,62): ");
+int task = Convert.ToInt32(Console.ReadLine());
+switch(task)
+{
+case 54:
+    task54();
+    break;
+case 56:
+    task56();
+    break;
+case 58:
+    task58();
+    break;
+case 62:
+    Task62();
+    break;
+default:
+    Console.WriteLine("Такой задачи нет");
+    break;
+}
+/* Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
 Например, задан массив:
 1 4 7 2
 5 9 2 3
@@ -45,7 +65,6 @@ Randarr2d(array2d);
 PrintArr2d(array2d);
 SumInArr(array2d, array);
 Console.WriteLine();
-Console.WriteLine(String.Join(",", array));
 mininarr = FindMininArr(array, mininarr);
 Console.WriteLine($"минимальная сумма значений в строке № {mininarr + 1}");
 }
@@ -58,6 +77,22 @@ Console.WriteLine($"минимальная сумма значений в стр
 18 20
 15 18 */
 
+void task58()
+{
+int[,] array1 = new int[2, 2];
+Randarr2d(array1);
+Console.WriteLine("Матрица 1: ");
+PrintArr2d(array1);
+int[,] array2 = new int[2,2];
+Randarr2d(array2);
+Console.WriteLine("Матрица 2: ");
+PrintArr2d(array2);
+int[,] promatrix = new int[2,2];
+ProMatrix(array1, array2, promatrix);
+Console.WriteLine("Результат умножения матриц: ");
+PrintArr2d(promatrix);
+}
+
 /* Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 Например, на выходе получается вот такой массив:
 01 02 03 04
@@ -67,8 +102,8 @@ Console.WriteLine($"минимальная сумма значений в стр
 void Task62()
 {
 int[,] array2d = new int[4,4];
-FillingArr2d(array2d);
-PrintArr62(array2d);
+    FillingArr2d(array2d);
+    PrintArr62(array2d);
 }
 
 //склад методов
@@ -178,4 +213,18 @@ void FillingArr2d(int[,] array)
         else
         i--;
     }
+}
+int[,] ProMatrix(int[,] array1, int[,] array2, int[,]promatrix)
+{
+for (int i = 0; i < array1.GetLength(0); i++)
+            {
+                for (int j = 0; j < array2.GetLength(1); j++)
+                {
+                    for (int x = 0; x < array2.GetLength(0); x++)
+                    {
+                        promatrix[i,j] += array1[i,x] * array2[x,j];
+                    }
+                }
+            }
+return promatrix;
 }

@@ -71,6 +71,8 @@ FillingArr2d(array2d);
 PrintArr62(array2d);
 }
 
+//склад методов
+
 void Randarr2d(int[,] array) 
  { 
      for (int i = 0; i < array.GetLength(0); i++) 

@@ -64,6 +64,12 @@ Console.WriteLine($"минимальная сумма значений в стр
 12 13 14 05
 11 16 15 06
 10 09 08 07 */
+void Task62()
+{
+int[,] array2d = new int[4,4];
+FillingArr2d(array2d);
+PrintArr62(array2d);
+}
 
 void Randarr2d(int[,] array) 
  { 
@@ -120,6 +126,8 @@ void SumInArr(int[,] array2d, int[] array)
         }
     }
 }
+
+
 int FindMininArr(int[] array, int min)
 {
     min = 0;
@@ -132,4 +140,40 @@ int FindMininArr(int[] array, int min)
     
     }
     return min;
+}
+
+
+void PrintArr62(int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      if (array[i,j] / 10 <= 0)
+      Console.Write($" {array[i,j]} ");
+
+      else Console.Write($"{array[i,j]} ");
+    }
+    Console.WriteLine();
+  }
+}
+
+void FillingArr2d(int[,] array)
+{
+    int tmp = 1;
+    int i = 0;
+    int j = 0;
+    while (tmp <= array.GetLength(0) * array.GetLength(1))
+    {
+        array[i, j] = tmp;
+        tmp++;
+        if (i <= j + 1 && i + j < array.GetLength(1) - 1)
+            j++;
+        else if (i < j && i + j >= array.GetLength(0) - 1)
+            i++;
+        else if (i >= j && i + j > array.GetLength(1) - 1)
+            j--;
+        else
+        i--;
+    }
 }
